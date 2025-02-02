@@ -1,4 +1,4 @@
-# CharInfo=Editor
+# CharInfo-Editor
 
 To install dependencies:
 
