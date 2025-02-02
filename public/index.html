@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>mii info editor</title>
+    <style>
+      html,
+      body {
+        background-color: #000;
+        color: white;
+        margin: 0;
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+          Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+          sans-serif;
+        color-scheme: dark;
+        display: flex;
+        width: 100%;
+        height: 100%;
+        flex-wrap: wrap;
+        background-image: url("https://mii.nxw.pw/assets/images/main_bg.svg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      .left-col {
+        display: flex;
+        /* flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1; */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        flex: 1;
+        gap: 8px;
+        background-color: #0001;
+        padding: 3rem;
+        height: 100%;
+      }
+
+      .right-col {
+        display: flex;
+        /* flex-direction: column;
+        justify-content: center;
+        flex-shrink: 0; */
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        flex: 1;
+        gap: 8px;
+        background-color: #0007;
+        padding: 3rem;
+        overflow-y: scroll;
+        height: 100%;
+      }
+
+      .right-col > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .right-col > div > label {
+        flex: 1;
+      }
+
+      .right-col > div > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      input[type="range"] {
+        width: 200px;
+      }
+
+      .array {
+        width: 2em;
+        font-family: monospace;
+        text-align: center;
+      }
+
+      .right-col .header {
+        width: 100%;
+        text-align: left;
+        font-size: 20px;
+        font-weight: bold;
+        padding-bottom: 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        border-bottom: 0.25rem solid #4447;
+      }
+
+      .sub-header {
+        width: 100%;
+        text-align: left;
+        font-size: 16px;
+        font-weight: bold;
+        margin-top: 0.5rem;
+        margin-bottom: 0rem;
+      }
+      .header + .sub-header {
+        margin-top: 0 !important;
+      }
+
+      @media screen and (max-width: 1280px) {
+        body {
+          flex-direction: column;
+        }
+        .left-col {
+          height: auto;
+          flex-shrink: 1;
+          flex-grow: 0;
+        }
+        img {
+          width: 240px !important;
+          height: 240px !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      const global = {};
+      const process = { env: { NODE_DEBUG: false } };
+    </script>
+    <script src="dist/main.js"></script>
+  </body>
+</html>
