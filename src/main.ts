@@ -18,6 +18,16 @@ import {
   shaderList,
   viewList,
 } from "./util/rendererPropLists";
+import { Ver3StoreData } from "./types/struct/FFLStoreData";
+import { RFLCharData, RFLStoreData } from "./types/struct/RFLStoreData";
+import { Ver3DataToVer1 } from "./lib/conversion/Ver3ToVer1";
+
+// test structs in window for debugging
+Ver3StoreData;
+RFLCharData;
+RFLStoreData;
+//@ts-expect-error
+window.Ver3DataToVer1 = Ver3DataToVer1;
 
 new Html("span")
   .class("small")
@@ -34,11 +44,20 @@ let image = new Html("img")
 
 let dataBox = new Html("textarea")
   .attr({ rows: 4, cols: 60 })
+  .on("input", (e) => {
+    try {
+      mii = NnMiiCharInfo.unpack(
+        parseHexOrB64TextStringToUint8Array(dataBox.getValue())
+      );
+    } catch (e) {}
+    render(false);
+  })
   .appendTo(leftContainer);
 
 var mii = NnMiiCharInfo.unpack(
   parseHexOrB64TextStringToUint8Array(
-    "dd2102ee1bce8996807e6f5216c652734d00690069000000000000000000000000000000000000000040400000000000002101000208040304020c0601040306020a010409171304030d000000040a0008040a0004021400"
+    "7C06FA4EF33C09E49286729A98DF0F574A00610073006D0069006E0065000000000000000000000B011C370000090000017B01002108070303020E0D08040607060C0000041E1301040D06000004100310070B00010C1B00"
+    // "dd2102ee1bce8996807e6f5216c652734d00690069000000000000000000000000000000000000000040400000000000002101000208040304020c0601040306020a010409171304030d000000040a0008040a0004021400"
   )
 );
 
@@ -49,7 +68,7 @@ let params = new URLSearchParams(
   "?verifyCharInfo=0&lightXDirection=0&lightYDirection=0&lightZDirection=0"
 );
 
-function render() {
+function render(updateTextBox: boolean = true) {
   params.set("data", dataToHex(NnMiiCharInfo.pack(mii)));
   var final = config.origin + config.baseURL + "?" + params.toString();
 
@@ -65,7 +84,7 @@ function render() {
   image.attr({
     src: final,
   });
-  dataBox.val(dataToHex(NnMiiCharInfo.pack(mii)));
+  if (updateTextBox) dataBox.val(dataToHex(NnMiiCharInfo.pack(mii)));
   if (finalURL) {
     finalURL.html(final);
   }
@@ -75,6 +94,10 @@ const config: Record<string, string> = {
   origin: "https://mii-renderer.nxw.pw",
   baseURL: "/miis/image.png",
 };
+
+if (location.hostname === "localhost") {
+  config.origin = "http://localhost:5000";
+}
 
 function Update(
   prop: string,
@@ -151,6 +174,9 @@ rightContainer.appendMany(
   Subheader("URL"),
   Select("origin", originList, Update, true, true),
   String("baseURL", 0, 100, Update, false, false, true),
+  Subheader("Validation"),
+  Slider("verifyCharInfo", 0, 1, Update, true),
+  Slider("verifyCRC16", 0, 1, Update, true),
   Subheader("Display"),
   Select("type", viewList, Update, true),
   Select("shaderType", shaderList, Update, true),
@@ -158,7 +184,6 @@ rightContainer.appendMany(
   Subheader("Headwear"),
   Slider("headwearIndex", 0, 9, Update, true),
   Slider("headwearColor", 0, 12, Update, true, (val) => val - 1),
-  Slider("verifyCharInfo", 0, 1, Update, true),
   Subheader("Rotation"),
   Slider("characterXRotate", 0, 359, Update, true),
   Slider("characterYRotate", 0, 359, Update, true),

@@ -1,3 +1,6 @@
+// Arian's fork of struct-fu ported to browser JS.
+// https://github.com/ariankordi/struct-fu
+
 /**
  * A library for defining structs to convert between JSON and binary.
  * Supports numbers, bytes, strings, and bitfields.
@@ -124,7 +127,7 @@ function arrayizeField(f, count) {
     return f2;
 }
 
-/**
+/*
  * Defines a new structure with the given fields.
  *
  * @param {string} [name] - The name of the structure.

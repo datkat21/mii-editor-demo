@@ -1058,16 +1058,248 @@ var bodyList = {
   "3DS": "3ds"
 };
 
+// src/types/struct/FFLStoreData.ts
+var import_lib2 = __toESM(require_lib(), 1);
+var FFLiCreateID = import_lib2.default.struct([
+  import_lib2.default.ubit("flag_normal", 1),
+  import_lib2.default.ubit("flag_1", 1),
+  import_lib2.default.ubit("flag_temporary", 1),
+  import_lib2.default.ubit("flag_3", 1),
+  import_lib2.default.ubit("create_date1", 14),
+  import_lib2.default.ubit("create_date2", 14),
+  import_lib2.default.byte("base", 6)
+]);
+var FFLiAuthorID = import_lib2.default.struct([import_lib2.default.byte("data", 8)]);
+var Ver3StoreData = import_lib2.default.struct("Ver3StoreData", [
+  import_lib2.default.ubitLE("mii_version", 8),
+  import_lib2.default.ubitLE("copyable", 1),
+  import_lib2.default.ubitLE("ng_word", 1),
+  import_lib2.default.ubitLE("region_move", 2),
+  import_lib2.default.ubitLE("font_region", 2),
+  import_lib2.default.ubitLE("reserved_0", 2),
+  import_lib2.default.ubitLE("room_index", 4),
+  import_lib2.default.ubitLE("position_in_room", 4),
+  import_lib2.default.ubitLE("author_type", 4),
+  import_lib2.default.ubitLE("birth_platform", 3),
+  import_lib2.default.ubitLE("reserved_1"),
+  import_lib2.default.struct("author_id", [FFLiAuthorID]),
+  import_lib2.default.struct("create_id", [FFLiCreateID]),
+  import_lib2.default.byte("reserved_2", 2),
+  import_lib2.default.ubitLE("gender", 1),
+  import_lib2.default.ubitLE("birth_month", 4),
+  import_lib2.default.ubitLE("birth_day", 5),
+  import_lib2.default.ubitLE("favorite_color", 4),
+  import_lib2.default.ubitLE("favorite", 1),
+  import_lib2.default.ubitLE("padding_0", 1),
+  import_lib2.default.char16le("name", 20),
+  import_lib2.default.uint8("height"),
+  import_lib2.default.uint8("build"),
+  import_lib2.default.ubitLE("localonly", 1),
+  import_lib2.default.ubitLE("face_type", 4),
+  import_lib2.default.ubitLE("face_color", 3),
+  import_lib2.default.ubitLE("face_tex", 4),
+  import_lib2.default.ubitLE("face_make", 4),
+  import_lib2.default.ubitLE("hair_type", 8),
+  import_lib2.default.ubitLE("hair_color", 3),
+  import_lib2.default.ubitLE("hair_flip", 1),
+  import_lib2.default.ubitLE("padding_1", 4),
+  import_lib2.default.ubitLE("eye_type", 6),
+  import_lib2.default.ubitLE("eye_color", 3),
+  import_lib2.default.ubitLE("eye_scale", 4),
+  import_lib2.default.ubitLE("eye_aspect", 3),
+  import_lib2.default.ubitLE("eye_rotate", 5),
+  import_lib2.default.ubitLE("eye_x", 4),
+  import_lib2.default.ubitLE("eye_y", 5),
+  import_lib2.default.ubitLE("padding_2", 2),
+  import_lib2.default.ubitLE("eyebrow_type", 5),
+  import_lib2.default.ubitLE("eyebrow_color", 3),
+  import_lib2.default.ubitLE("eyebrow_scale", 4),
+  import_lib2.default.ubitLE("eyebrow_aspect", 3),
+  import_lib2.default.ubitLE("padding_3", 1),
+  import_lib2.default.ubitLE("eyebrow_rotate", 5),
+  import_lib2.default.ubitLE("eyebrow_x", 4),
+  import_lib2.default.ubitLE("eyebrow_y", 5),
+  import_lib2.default.ubitLE("padding_4", 2),
+  import_lib2.default.ubitLE("nose_type", 5),
+  import_lib2.default.ubitLE("nose_scale", 4),
+  import_lib2.default.ubitLE("nose_y", 5),
+  import_lib2.default.ubitLE("padding_5", 2),
+  import_lib2.default.ubitLE("mouth_type", 6),
+  import_lib2.default.ubitLE("mouth_color", 3),
+  import_lib2.default.ubitLE("mouth_scale", 4),
+  import_lib2.default.ubitLE("mouth_aspect", 3),
+  import_lib2.default.ubitLE("mouth_y", 5),
+  import_lib2.default.ubitLE("mustache_type", 3),
+  import_lib2.default.ubitLE("padding_6", 8),
+  import_lib2.default.ubitLE("beard_type", 3),
+  import_lib2.default.ubitLE("beard_color", 3),
+  import_lib2.default.ubitLE("beard_scale", 4),
+  import_lib2.default.ubitLE("beard_y", 5),
+  import_lib2.default.ubitLE("padding_7", 1),
+  import_lib2.default.ubitLE("glasses_type", 4),
+  import_lib2.default.ubitLE("glasses_color", 3),
+  import_lib2.default.ubitLE("glasses_scale", 4),
+  import_lib2.default.ubitLE("glass_y", 5),
+  import_lib2.default.ubitLE("mole_type", 1),
+  import_lib2.default.ubitLE("mole_scale", 4),
+  import_lib2.default.ubitLE("mole_x", 5),
+  import_lib2.default.ubitLE("mole_y", 5),
+  import_lib2.default.ubitLE("padding_8", 1),
+  import_lib2.default.char16le("creator", 20),
+  import_lib2.default.uint16le("padding_9"),
+  import_lib2.default.uint16("checksum")
+]);
+
+// src/types/struct/RFLStoreData.ts
+var import_lib3 = __toESM(require_lib(), 1);
+var RFLCreateID = import_lib3.default.struct([
+  import_lib3.default.uint8("data", 8)
+]);
+var RFLCharData = import_lib3.default.struct([
+  import_lib3.default.ubit("padding0", 1),
+  import_lib3.default.ubit("gender", 1),
+  import_lib3.default.ubit("birthMonth", 4),
+  import_lib3.default.ubit("birthDay", 5),
+  import_lib3.default.ubit("favoriteColor", 4),
+  import_lib3.default.ubit("favorite", 1),
+  import_lib3.default.char16be("name", 20),
+  import_lib3.default.uint8("height"),
+  import_lib3.default.uint8("build"),
+  import_lib3.default.struct("create_id", [RFLCreateID]),
+  import_lib3.default.ubit("faceType", 3),
+  import_lib3.default.ubit("faceColor", 3),
+  import_lib3.default.ubit("faceTex", 4),
+  import_lib3.default.ubit("padding_2", 3),
+  import_lib3.default.ubit("localonly", 1),
+  import_lib3.default.ubit("type", 2),
+  import_lib3.default.ubit("hairType", 7),
+  import_lib3.default.ubit("hairColor", 3),
+  import_lib3.default.ubit("hairFlip", 1),
+  import_lib3.default.ubit("padding_3", 5),
+  import_lib3.default.ubit("eyebrowType", 5),
+  import_lib3.default.ubit("eyebrowRotate", 5),
+  import_lib3.default.ubit("padding_4", 6),
+  import_lib3.default.ubit("eyebrowColor", 3),
+  import_lib3.default.ubit("eyebrowScale", 4),
+  import_lib3.default.ubit("eyebrowY", 5),
+  import_lib3.default.ubit("eyebrowX", 4),
+  import_lib3.default.ubit("eyeType", 6),
+  import_lib3.default.ubit("eyeRotate", 5),
+  import_lib3.default.ubit("eyeY", 5),
+  import_lib3.default.ubit("eyeColor", 3),
+  import_lib3.default.ubit("eyeScale", 4),
+  import_lib3.default.ubit("eyeX", 4),
+  import_lib3.default.ubit("padding_5", 5),
+  import_lib3.default.ubit("noseType", 4),
+  import_lib3.default.ubit("noseScale", 4),
+  import_lib3.default.ubit("noseY", 5),
+  import_lib3.default.ubit("padding_6", 3),
+  import_lib3.default.ubit("mouthType", 5),
+  import_lib3.default.ubit("mouthColor", 2),
+  import_lib3.default.ubit("mouthScale", 4),
+  import_lib3.default.ubit("mouthY", 5),
+  import_lib3.default.ubit("glassType", 4),
+  import_lib3.default.ubit("glassColor", 3),
+  import_lib3.default.ubit("glassScale", 4),
+  import_lib3.default.ubit("glassY", 5),
+  import_lib3.default.ubit("mustacheType", 2),
+  import_lib3.default.ubit("beardType", 2),
+  import_lib3.default.ubit("beardColor", 3),
+  import_lib3.default.ubit("beardScale", 4),
+  import_lib3.default.ubit("beardY", 5),
+  import_lib3.default.ubit("moleType", 1),
+  import_lib3.default.ubit("moleScale", 4),
+  import_lib3.default.ubit("moleY", 5),
+  import_lib3.default.ubit("moleX", 5),
+  import_lib3.default.ubit("padding_8", 1),
+  import_lib3.default.char16be("creatorName", 20)
+]);
+var RFLStoreData = import_lib3.default.struct("RFLStoreData", [
+  import_lib3.default.struct([RFLCharData]),
+  import_lib3.default.uint16("checksum")
+]);
+
+// src/lib/conversion/Ver3ToVer1.ts
+function Ver3DataToVer1(ver3) {
+  const rsd = RFLStoreData.unpack(parseHexOrB64TextStringToUint8Array("0".repeat(76 * 2)));
+  const charData = rsd.RFLCharData;
+  charData.padding0 = ver3.padding_0;
+  charData.gender = ver3.gender;
+  charData.birthMonth = ver3.birth_month;
+  charData.birthDay = ver3.birth_day;
+  charData.favoriteColor = ver3.favorite_color;
+  charData.favorite = ver3.favorite;
+  charData.name = ver3.name;
+  charData.height = ver3.height;
+  charData.build = ver3.build;
+  charData.create_id = ver3.create_id;
+  charData.faceType = ver3.face_type;
+  charData.faceColor = ver3.face_color;
+  charData.faceTex = ver3.face_make;
+  charData.padding_2 = ver3.padding_2;
+  charData.localonly = ver3.localonly;
+  charData.type = ver3.create_id.flag_normal;
+  charData.hairType = ver3.hair_type;
+  charData.hairColor = ver3.hair_color;
+  charData.hairFlip = ver3.hair_flip;
+  charData.padding_3 = ver3.padding_3;
+  charData.eyebrowType = ver3.eyebrow_type;
+  charData.eyebrowRotate = ver3.eyebrow_rotate;
+  charData.padding_4 = ver3.padding_4;
+  charData.eyebrowColor = ver3.eyebrow_color;
+  charData.eyebrowScale = ver3.eyebrow_scale;
+  charData.eyebrowY = ver3.eyebrow_y;
+  charData.eyebrowX = ver3.eyebrow_x;
+  charData.eyeType = ver3.eye_type;
+  charData.eyeRotate = ver3.eye_rotate;
+  charData.eyeY = ver3.eye_y;
+  charData.eyeColor = ver3.eye_color;
+  charData.eyeScale = ver3.eye_scale;
+  charData.eyeX = ver3.eye_x;
+  charData.padding_5 = ver3.padding_5;
+  charData.noseType = ver3.nose_type;
+  charData.noseScale = ver3.nose_scale;
+  charData.noseY = ver3.nose_y;
+  charData.padding_6 = ver3.padding_6;
+  charData.mouthType = ver3.mouth_type;
+  charData.mouthColor = ver3.mouth_color;
+  charData.mouthScale = ver3.mouth_scale;
+  charData.mouthY = ver3.mouth_y;
+  charData.glassType = ver3.glasses_type;
+  charData.glassColor = ver3.glasses_color;
+  charData.glassScale = ver3.glasses_scale;
+  charData.glassY = ver3.glass_y;
+  charData.mustacheType = ver3.mustache_type;
+  charData.beardType = ver3.beard_type;
+  charData.beardColor = ver3.beard_color;
+  charData.beardScale = ver3.beard_scale;
+  charData.beardY = ver3.beard_y;
+  charData.moleType = ver3.mole_type;
+  charData.moleScale = ver3.mole_scale;
+  charData.moleY = ver3.mole_y;
+  charData.moleX = ver3.mole_x;
+  charData.padding_8 = ver3.padding_8;
+  charData.creatorName = ver3.creator;
+  return RFLStoreData.pack(rsd);
+}
+
 // src/main.ts
+window.Ver3DataToVer1 = Ver3DataToVer1;
 new Html("span").class("small").style({ position: "fixed", top: "2vmax", left: "3vmax", opacity: "0.4" }).text("Switch CharInfo editor by kat21").appendTo("body");
 var leftContainer = new Html("div").class("left-col").appendTo("body");
 var rightContainer = new Html("div").class("right-col").appendTo("body");
 var image = new Html("img").style({ width: "420px", height: "420px", "object-fit": "contain" }).appendTo(leftContainer);
-var dataBox = new Html("textarea").attr({ rows: 4, cols: 60 }).appendTo(leftContainer);
-var mii = NnMiiCharInfo.unpack(parseHexOrB64TextStringToUint8Array("dd2102ee1bce8996807e6f5216c652734d00690069000000000000000000000000000000000000000040400000000000002101000208040304020c0601040306020a010409171304030d000000040a0008040a0004021400"));
+var dataBox = new Html("textarea").attr({ rows: 4, cols: 60 }).on("input", (e) => {
+  try {
+    mii = NnMiiCharInfo.unpack(parseHexOrB64TextStringToUint8Array(dataBox.getValue()));
+  } catch (e2) {
+  }
+  render(false);
+}).appendTo(leftContainer);
+var mii = NnMiiCharInfo.unpack(parseHexOrB64TextStringToUint8Array("7C06FA4EF33C09E49286729A98DF0F574A00610073006D0069006E0065000000000000000000000B011C370000090000017B01002108070303020E0D08040607060C0000041E1301040D06000004100310070B00010C1B00"));
 window.mii = mii;
 var params = new URLSearchParams("?verifyCharInfo=0&lightXDirection=0&lightYDirection=0&lightZDirection=0");
-function render() {
+function render(updateTextBox = true) {
   params.set("data", dataToHex(NnMiiCharInfo.pack(mii)));
   var final = config.origin + config.baseURL + "?" + params.toString();
   switch (mii.type) {
@@ -1081,7 +1313,8 @@ function render() {
   image.attr({
     src: final
   });
-  dataBox.val(dataToHex(NnMiiCharInfo.pack(mii)));
+  if (updateTextBox)
+    dataBox.val(dataToHex(NnMiiCharInfo.pack(mii)));
   if (finalURL) {
     finalURL.html(final);
   }
@@ -1090,6 +1323,9 @@ var config = {
   origin: "https://mii-renderer.nxw.pw",
   baseURL: "/miis/image.png"
 };
+if (location.hostname === "localhost") {
+  config.origin = "http://localhost:5000";
+}
 function Update(prop, value, isUrl, returnOnly, shouldValidate, subProp, isNumber, isConfig) {
   console.log(`update(prop:`, prop, `value:`, value, `, isUrl:`, isUrl, `, returnOnly: `, returnOnly, `, shouldValidate: `, shouldValidate, `, subProp: `, subProp, "isConfig", isConfig);
   if (isConfig) {
@@ -1133,8 +1369,8 @@ function Update(prop, value, isUrl, returnOnly, shouldValidate, subProp, isNumbe
 }
 render();
 var finalURL = new Html("textarea").attr({ rows: 4 }).style({ width: "100%" });
-rightContainer.appendMany(Header("Generated URL"), finalURL, Header("Renderer"), Subheader("URL"), Select("origin", originList, Update, true, true), String2("baseURL", 0, 100, Update, false, false, true), Subheader("Display"), Select("type", viewList, Update, true), Select("shaderType", shaderList, Update, true), Select("bodyType", bodyList, Update, true), Subheader("Headwear"), Slider("headwearIndex", 0, 9, Update, true), Slider("headwearColor", 0, 12, Update, true, (val) => val - 1), Slider("verifyCharInfo", 0, 1, Update, true), Subheader("Rotation"), Slider("characterXRotate", 0, 359, Update, true), Slider("characterYRotate", 0, 359, Update, true), Slider("characterZRotate", 0, 359, Update, true), Subheader("Light Direction"), Slider("lightXDirection", 0, 359, Update, true), Slider("lightYDirection", 0, 359, Update, true), Slider("lightZDirection", 0, 359, Update, true), Header("CharInfo"), ...propsToComponentCollection(CharInfoProps, Update));
+rightContainer.appendMany(Header("Generated URL"), finalURL, Header("Renderer"), Subheader("URL"), Select("origin", originList, Update, true, true), String2("baseURL", 0, 100, Update, false, false, true), Subheader("Validation"), Slider("verifyCharInfo", 0, 1, Update, true), Slider("verifyCRC16", 0, 1, Update, true), Subheader("Display"), Select("type", viewList, Update, true), Select("shaderType", shaderList, Update, true), Select("bodyType", bodyList, Update, true), Subheader("Headwear"), Slider("headwearIndex", 0, 9, Update, true), Slider("headwearColor", 0, 12, Update, true, (val) => val - 1), Subheader("Rotation"), Slider("characterXRotate", 0, 359, Update, true), Slider("characterYRotate", 0, 359, Update, true), Slider("characterZRotate", 0, 359, Update, true), Subheader("Light Direction"), Slider("lightXDirection", 0, 359, Update, true), Slider("lightYDirection", 0, 359, Update, true), Slider("lightZDirection", 0, 359, Update, true), Header("CharInfo"), ...propsToComponentCollection(CharInfoProps, Update));
 render();
 
-//# debugId=E85E1E6FA324E8F564756E2164756E21
+//# debugId=90FE224CDFA9483E64756E2164756E21
 //# sourceMappingURL=main.js.map

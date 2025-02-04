@@ -1,6 +1,6 @@
 import _ from "../../lib/struct-fu/lib.js";
 
-export const FFLiCreateID = _.struct("FFLiCreateID", [
+export const FFLiCreateID = _.struct([
   _.ubit("flag_normal", 1),
   _.ubit("flag_1", 1),
   _.ubit("flag_temporary", 1),
@@ -14,11 +14,11 @@ export const date_timestamp = function (createID: any) {
   var timestamp = val28 * 2 + 1262304000;
   return new Date(timestamp * 1000);
 };
-export const FFLiAuthorID = _.struct("FFLiAuthorID", [_.byte("data", 8)]);
+export const FFLiAuthorID = _.struct([_.byte("data", 8)]);
 
+// based on arian's FFLiMiiDataCore implementation
 export const Ver3StoreData = _.struct("Ver3StoreData", [
   // 0x00: 32 bits
-  //_.struct([
   _.ubitLE("mii_version", 8), // LSB
   _.ubitLE("copyable", 1),
   _.ubitLE("ng_word", 1),
@@ -30,7 +30,6 @@ export const Ver3StoreData = _.struct("Ver3StoreData", [
   _.ubitLE("author_type", 4), // _0_24_27
   _.ubitLE("birth_platform", 3),
   _.ubitLE("reserved_1"), // Unused (MSB)
-  //]),
 
   // 0x04: author_id (8 bytes)
   _.struct("author_id", [FFLiAuthorID]),
@@ -137,3 +136,108 @@ export const Ver3StoreData = _.struct("Ver3StoreData", [
   _.uint16le("padding_9"),
   _.uint16("checksum"),
 ]);
+
+// Generate type data with this snippet
+/*
+var obj = Ver3StoreData.unpack(parseHexOrB64TextStringToUint8Array("..."))
+var text="";
+
+for (var key in obj) {
+  text += `${key}: ${typeof obj[key]};\n`
+}
+
+console.log(text)
+*/
+export type Ver3StoreData = {
+  mii_version: number;
+  copyable: number;
+  ng_word: number;
+  region_move: number;
+  font_region: number;
+  reserved_0: number;
+  room_index: number;
+  position_in_room: number;
+  author_type: number;
+  birth_platform: number;
+  reserved_1: number;
+  author_id: FFLiAuthorID;
+  create_id: FFLiCreateID;
+  reserved_2: object;
+  gender: number;
+  birth_month: number;
+  birth_day: number;
+  favorite_color: number;
+  favorite: number;
+  padding_0: number;
+  name: string;
+  height: number;
+  build: number;
+  localonly: number;
+  face_type: number;
+  face_color: number;
+  face_tex: number;
+  face_make: number;
+  hair_type: number;
+  hair_color: number;
+  hair_flip: number;
+  padding_1: number;
+  eye_type: number;
+  eye_color: number;
+  eye_scale: number;
+  eye_aspect: number;
+  eye_rotate: number;
+  eye_x: number;
+  eye_y: number;
+  padding_2: number;
+  eyebrow_type: number;
+  eyebrow_color: number;
+  eyebrow_scale: number;
+  eyebrow_aspect: number;
+  padding_3: number;
+  eyebrow_rotate: number;
+  eyebrow_x: number;
+  eyebrow_y: number;
+  padding_4: number;
+  nose_type: number;
+  nose_scale: number;
+  nose_y: number;
+  padding_5: number;
+  mouth_type: number;
+  mouth_color: number;
+  mouth_scale: number;
+  mouth_aspect: number;
+  mouth_y: number;
+  mustache_type: number;
+  padding_6: number;
+  beard_type: number;
+  beard_color: number;
+  beard_scale: number;
+  beard_y: number;
+  padding_7: number;
+  glasses_type: number;
+  glasses_color: number;
+  glasses_scale: number;
+  glass_y: number;
+  mole_type: number;
+  mole_scale: number;
+  mole_x: number;
+  mole_y: number;
+  padding_8: number;
+  creator: string;
+  padding_9: number;
+  checksum: number;
+};
+
+export type FFLiAuthorID = {
+  data: Uint8Array;
+};
+
+export type FFLiCreateID = {
+  flag_normal: number;
+  flag_1: number;
+  flag_temporary: number;
+  flag_3: number;
+  create_date1: number;
+  create_date2: number;
+  base: Uint8Array;
+};
